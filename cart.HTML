@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	        <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://kit.fontawesome.com/430b9a6f9f.js" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link href="http://fonts.cdnfonts.com/css/cerebri-sans" rel="stylesheet"> 
+	<title>check out page</title>
+
+	<style>
+	/*nav content*/
+		body {
+			padding: 0px;
+			margin:0px;
+			font-family: Okra,Helvetica,sans-serif;
+			scroll-behavior: smooth;
+		}
+        a{
+            text-decoration: none;   
+        }
+		.nav-total-container{
+			box-shadow: rgb(232 232 232) 0px -0.5px 0px;
+			border-bottom: 1px solid #f3f3f3;
+		}
+		.nav-header{
+		    width: 100%;
+		    max-width: 100%;
+		    display: block;
+		    position: static;
+		    height: 3.5rem;
+		    justify-content: space-between;
+		    align-items: center;
+		    top: 0px;
+		    transition: opacity 0.25s linear 0s, height 0.56s cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
+		    background-color: transparent;
+		}
+		.nav-bar{
+		    width: 100%;
+		    max-width: 60rem;
+		    margin: 0px 20px;
+		    display: flex;
+		    flex-wrap: nowrap;
+		    height: 100%;
+		    -webkit-box-pack: justify;
+		    justify-content: space-between;
+		    -webkit-box-align: center;
+		    align-items: center;
+		    position: relative;
+		    z-index: 4;
+		}
+		nav ul {
+			width: 100%;
+		    list-style: none;
+		    max-width: 100%;
+		    height: 25px;
+		    flex-wrap: nowrap;
+		    background: transparent;
+		    align-items: center;
+		    display: flex;
+		    user-select: none;
+		    opacity: 1;
+		    padding: 1.7rem 0px;
+		    margin: 0px;
+		    transition: opacity 0.25s linear 0s, visibility 0.25s linear 0s, height 0.25s cubic-bezier(0.52, 0.16, 0.24, 1) 0s;
+	    }
+	    .back-btn{
+		    padding: 10px;
+		    font-size: 15px;
+		    color: #e03546;
+		    background: #fff;
+		    border: none;
+		    opacity: 0.8;
+		    letter-spacing: 1px;
+		    cursor: pointer;
+	    }
+		.restaurent-name{
+			position: absolute;
+		    left: 50%;
+		    transform: translateX(50%);
+		}
+		/*End*/
+
+		/*check out content*/
+
+		.check-out-fullcon{
+		    position: relative; 
+		    max-width: 100rem;
+		    max-height: initial;
+		    margin: 0px auto;
+		    padding-bottom: 3.5rem;
+		    margin-left: 30%;
+		}
+		.checkout-table-head,.heading{
+		    font-size: 2rem;
+		    line-height: 1.2; 
+		    margin: 2rem 0px 2.5rem;
+		    font-weight: 500;
+		    color: rgb(54, 54, 54);
+		}
+	  	.checkout-second-box.heading{
+			margin: 0px 0px 1.5rem!important;
+			color: rgb(79, 79, 79)!important;
+		}
+		.check-out-con{
+		    width: 100%;
+		    position: relative;
+		    display: flex;
+		    flex-wrap: wrap;
+		}
+		.table-nm-box,.checkout-payment-method{    
+		    padding: 1.2rem 2.4rem;
+		    width: 100%;
+		    border: 0.1rem solid rgb(232, 232, 232);
+		    border-radius: 0.8rem;
+		    margin-bottom: 1.5rem;
+		    box-shadow: rgb(0 0 0 / 10%) 0px 4px 16px;
+	    }
+		.checkout-second-box{
+			position: relative;
+			width: 100%;
+			-webkit-box-flex: 0;
+			flex-grow: 0;
+			flex-shrink: 0;
+			max-width: 47.3333%;
+			padding: 0px 0px 20px 10px;
+		}
+		.payment-reciept-box{
+			border: 1px solid rgb(248, 248, 248);
+			border-radius: 0.8rem;
+			overflow: hidden;
+		}
+		.payment-reciept-box .identity-box{	
+			padding: 1.5rem;
+			border-bottom: 0.1rem solid rgb(232, 232, 232);
+			background: rgb(234 231 231);
+		}
+		.identity-box .head{
+			line-height: 1.5;
+			margin: 0px 0px 1rem;
+			font-size: 1.2rem;
+			letter-spacing: 0.3rem;
+			text-transform: uppercase;
+			color: rgb(79, 79, 79);
+			font-weight: 500;
+		}
+		.identity-box .hotel-name{
+			font-size: inherit;
+		    line-height: 1.5;
+		    margin: 0px;
+		    font-weight: 500;
+		    color: rgb(54, 54, 54);	
+		}
+		.identity-box .location{
+			line-height: 1.5;
+		    margin: 0px;
+		    font-size: 1.2rem;
+		    color: rgb(54, 54, 54);
+		}
+		.sub_total_main_container{
+		    width: 96%;
+		    position: sticky;
+		    bottom: 0px;
+		    z-index: 1;
+		    background-color: #fff;
+		    margin-left: 30px;
+		}
+		.sub_total_top_container{
+		    background-color: #fff;
+		    width: 100%;
+		    border-top-left-radius: 5px;
+		    border-top-right-radius: 5px;
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    border-bottom: none;
+		}
+		/* style for inside sub total page */
+		.sub_total_header h1{
+		    font-size: 15px;
+		    font-family: auto;
+		    font-weight: 300;
+		}
+		.main_pre_sub_total_con{
+		    width: 100%;
+		    display: flex;
+		    align-items: center;
+		    justify-content: center;
+		    max-width: 81%;
+		}
+		.pre_sub_total_con{
+		    display: flex;
+		    background-color: #fff;
+		    width: 100%;
+		}
+		.sub_total_img_con{
+		    width: 15%;
+		    background-color: #fff;
+		    text-align: center;
+		}
+		.sub_total_top_container{
+			background-color: #fff;
+			width: 100%;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border-bottom: 0.5px solid #e0dddd;
+			margin-top: 10px;
+		}
+		.sub_total_img_con img{
+			height: 35px;
+		    width: 35px;
+		    margin: 10px;
+		    border-radius: 5px;
+		}
+		.sub_total_title_con{
+		    width: 41%;
+		    display: flex;
+		    background-color: #fff;
+		    align-items: center;
+		    justify-content: center;
+		}
+		.sub_total_title_con h1, .sub_total_price_con h2{
+		    font-size: 20px;
+		    font-family: auto;
+		    font-weight: 300;
+		    text-align: center;
+		}
+		.sub_total_qty_con{
+		    width: 29%;
+		    background-color: #fff;
+		    align-items: center;
+		    justify-content: center;
+		    display: flex;
+		}
+		.sub_total_price_con{
+		    width: 25%;
+		    background-color: #fff;
+		    align-items: center;
+		    justify-content: center;
+		    display: flex;
+		}
+		/* style for cart button */
+	    .cart_btn {
+	        width: 150px;
+	        margin: 0 auto;
+	        text-align: center;
+	        display: none;
+	    }
+	    .value-button, .sub_total_value_button  {
+	        display: inline-block;
+	        border: 1px solid #ddd;
+	        margin: 0px;
+	        width: 40px;
+	        height: 20px;
+	        text-align: center;
+	        vertical-align: middle;
+	        padding: 11px 0;
+	        background: #eee;
+	        -webkit-touch-callout: none;
+	        -webkit-user-select: none;
+	        -khtml-user-select: none;
+	        -moz-user-select: none;
+	        -ms-user-select: none;
+	        user-select: none;
+	    }
+	    .value-button:hover {
+	        cursor: pointer;
+	    }
+	    .cart_btn #decrease{
+			border-radius: 8px 0 0 8px;
+			margin-right: -4px;
+			padding: 3px 0px 13px 0px;
+			height: 10px;
+			width: 20px;
+			background-color: rgb(239, 79, 95);
+			color: #fff;
+	    }
+	    .cart_btn #increase {
+			border-radius: 0 8px 8px 0;
+			margin-left: -5px;
+			margin-right: -4px;
+			padding: 4px 0px 12px 0px;
+			height: 10px;
+			width: 20px;
+			background-color: rgb(239, 79, 95);
+			color: #fff;
+	    }
+	    input[type=number]::-webkit-inner-spin-button,
+	    input[type=number]::-webkit-outer-spin-button {
+	        -webkit-appearance: none;
+	        margin: 0;
+	    }
+	    /* end */
+
+	    /* style for inside sub total cart button */
+	    .sub_total_cart_btn{
+	        width: 150px;
+	        margin: 0 auto;
+	        text-align: center;
+	    }
+	    .sub_total_value_button:hover {
+	        cursor: pointer;
+	    }
+	    .sub_total_cart_btn #dec_btn{
+            border-radius: 8px 0 0 8px;
+            margin-right: -4px;
+            padding: 5px 0px 13px 0px;
+            height: 12px;
+            width: 25px;
+            background-color: rgb(239, 79, 95);
+            color: #fff;
+		}
+	    .sub_total_cart_btn #inc_btn {
+		    border-radius: 0 8px 8px 0;
+            margin-left: -5px;
+            margin-right: -4px;
+            padding: 6px 0px 23px 0px;
+            height: 1px;
+            width: 25px;
+            background-color: rgb(239, 79, 95);
+            color: #fff;
+	    }
+	    input#number_btn {
+            text-align: center;
+            border: none;
+            border-top: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            width: 20px;
+            height: 28px;
+            background-color: rgb(239, 79, 95);
+            color: #fff;
+	    }
+	/* end */
+	   .sub-total-box5{    
+			padding: 4px;
+	        background: rgb(254, 252, 249);
+	        border-bottom: none;
+		}
+		.sub-total5{
+			display: flex;
+		    flex-shrink: 0;
+		    flex-grow: 0;
+		    -webkit-box-pack: justify;
+		    justify-content: space-between;
+		    -webkit-box-align: center;
+		    align-items: center;
+		}
+		.sub-num{
+		     display: flex;
+		    -webkit-box-align: center;
+		    align-items: center;
+		}
+		.sub-total-box5 .tax{
+		    font-size: 15px;
+		    width: 75%;
+		    text-decoration: underline dashed;
+		    color: rgb(130, 130, 130);
+		}
+		.taxrs{
+		    line-height: 1.5;
+		    margin: 0px;
+		    font-size: 15px;
+		    color: rgb(130, 130, 130);
+		    white-space: nowrap;
+		}
+		hr{
+			margin-top: 15px;
+			border-top-style: solid;
+	        border-top-color: rgb(232, 232, 232);
+	        border-width: 0.5px 0px 0px solid ;
+		}
+	    .warning-message{
+			line-height: 1.5;	    
+			margin: 10px 0px 1rem;
+			font-size: 15px;
+			color: rgb(239, 79, 95);
+			text-align: center;
+			border: 1px solid;
+			padding: 10px;
+			opacity: 0.7;
+		}
+		.Order-Button-con{
+		    width: 100%;
+		    position: sticky;
+		    bottom: 0px;
+		    transition: width 0.2s ease 0s;
+		}
+		.Order-Button{
+		    margin-bottom: 1rem;
+		    box-shadow: rgb(0 0 0 / 15%) 0px 4px 18px;
+		    z-index: 10;
+		    display: inline-flex;
+		    align-items: center;
+		    justify-content: center;
+		    height: 100%;
+		    width: 100%;
+		    line-height: 44px;
+		    font-size: 15px;
+		    color: rgb(255, 255, 255);
+		    opacity: 0.5;
+		    background: border-box rgb(156, 156, 156);
+		    border-color: rgb(156, 156, 156);
+		    border-style: solid;
+		    border-radius: 0.6rem;
+		    padding: 0px 1.6rem;
+		    transition: transform 0.25s ease 0s, opacity 0.25s ease 0s, box-shadow 0.25s ease 0s;
+		    outline: none !important; 
+		}
+		.order-btn-arrow{
+		    margin-left: 7px;
+		    font-size: 15px;
+		    margin-top: 0px;
+		}
+		.Order-Button:hover{		
+				background:rgb(239, 79, 95);
+				color: #fff;
+				border: rgb(239, 79, 95);
+		}
+
+		@media screen and (max-width: 480px)
+		{
+			.check-out-fullcon {
+				margin-left: 0px;
+			}
+			.checkout-second-box{
+				max-width: 96%;
+				padding: 0px;
+				margin: 0px 8px 20px 8px;
+			}
+
+			.main_pre_sub_total_con {
+				max-width: 76%;
+			}
+			.sub_total_title_con h1, 
+			.sub_total_price_con h2 {
+				font-size: 16px;
+
+			}
+			.checkout-table-head, .heading {
+				margin: 2rem 0px 2.5rem 11px;
+			}
+			.back-btn {
+				font-size: 12px;
+				margin-left: -20px;
+			}
+			.restaurent-name {
+				left: 35%;
+			}
+			.sub_total_img_con {
+				width: 17%;
+				display: none;
+			}
+			.sub_total_cart_btn #dec_btn{
+				padding: 5px 0px 13px 0px !important;
+				height: 12px !important;
+				width: 25px !important;
+			}
+			input#number_btn {
+				width: 21px;
+				height: 28px;
+			}
+	        .sub_total_cart_btn #inc_btn {
+				padding: 6px 0px 23px 0px;
+				height: 1px;
+				width: 25px;
+			}
+		}	
+</style>
+</head>
+<body>
+		<!-- nav bar -->
+	<div class='nav-total-container'>
+			<header class='nav-header'>
+				<nav class='nav-bar'>
+				  <div class='restaurent-name'>
+						<h3>RESTAURENT</h3>
+				  </div>
+					<ul>
+					   <li>
+                        <a href="./home.html">
+						  <button class='back-btn'>
+							<span>
+							<i class="fas fa-caret-left"></i>
+                           
+							Back to Restaurent
+                           
+							</span>
+						</button>
+                    </a>
+					</li>
+				</ul>
+			</nav>
+		</header>
+	</div>
+		<!-- End -->
+			<!-- check out page  -->
+	<div class='check-out-fullcon'>
+	  <h3 class='checkout-table-head'>Check Out</h3>
+	   <div class='check-out-con'>
+
+		<div class='checkout-second-box'>
+			 <div class='payment-reciept-box'>
+			 	<div class='identity-box'>
+			 		<p class='head'>ORDER FROM</p>
+			 		<p class='hotel-name'>Restaurent</p>
+			 		<p class='location'>Location</p>
+			 	</div>
+ 	<div class='item-main-container'>
+ 		<div class='item-container'>
+<div class="sub_total_top_container">
+
+        <div class="sub_total_header">
+        	<div class=''><h1>Your orders</h1>
+        	</div>
+        </div>
+        <div class="main_pre_sub_total_con">
+            <div class="pre_sub_total_con">
+
+                <div class="sub_total_img_con">
+                    <img src="./images/Chicken-65.jpg">
+                    </div>
+                        <div class="sub_total_title_con">
+                            <h1>chicken 65</h1>     
+                            </div>
+                            <div class="sub_total_qty_con">
+                                <div class="sub_total_cart_btn">
+                                    <div class="sub_total_value_button dec_btn" id="dec_btn"  value="Decrease Value">-</div>
+                                    <input type="number" class="number" id="number_btn" value="1" />
+                                    <div class="sub_total_value_button inc_btn" id="inc_btn"  value="Increase Value">+</div>
+                                </div>
+                                </div>
+                                <div class="sub_total_price_con">
+                                    <h2>₹150</h2>
+                                </div>                       
+			            </div>
+			         </div>
+			       </div>
+			        <!-- end -->
+                        <!-- script for inside sub total cart button -->
+<script>        
+    $(document).on("click", ".inc_btn", function() {
+        var value = parseInt($(this).parent().find('#number_btn').val(), 10);
+        value = isNaN(value) ? 1 : value;
+        value++;
+        $(this).parent().find('#number_btn').val(value);
+    });
+    
+    $(document).on("click", ".dec_btn", function() {
+        var value = parseInt($(this).parent().find('#number_btn').val(), 10);
+        value = isNaN(value) ? 0 : value;
+        value < 1 ? value = 1 : '';
+        value--;
+        $(this).parent().find('#number_btn').val(value);
+    });
+    
+</script>
+<!-- end -->
+		</div> <!-- item1 -->
+</div><!-- item-full-container -->
+		         <div class='sub-total-box5'>
+					      <div class='sub-total-box5'>
+							  <div class='sub-total5'>
+									<p class='hotel-name'>Sub Total</p>
+	   							<div class='sub-num'>
+			   						<span>₹500</span>
+			   			     	</div>
+							   </div>
+					      </div>
+   						 <div class='sub-total-box5'>	
+	   							<div class='sub-total5 '>
+	   								<p class='tax'>Taxes & charges</p>
+	   								<span class='hotel-name taxrs'>₹65.95</span>
+	   							</div>
+ 						 </div>
+						   <hr>
+						   <div class='sub-total-box5'>
+							  <div class='sub-total5'>
+									<h4 class='hotel-name'>Grand Total</h4>
+	   							<div class='sub-num'>
+			   						<span>₹141.70</span>
+			   			     	</div>
+							   </div>
+				           </div>
+		              </div>	 	
+	<p class='warning-message'>Orders once placed cannot be cancelled and are non-refundable.</p>
+		       <div class='Order-Button-con'>
+			       	<button class='Order-Button'>Place Order<span class='order-btn-arrow'>
+			       	<i class="fas fa-caret-right"></i>
+			       	</span>
+			       </button>
+		     </div>
+			 </div>  <!--payment-reciept  -->
+		</div>
+	</div><!-- check-out-con -->
+</div><!-- check-out-fullcon -->
+
+
+</body>
+</html>
+
